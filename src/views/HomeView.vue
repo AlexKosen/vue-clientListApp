@@ -6,12 +6,14 @@ import TheUserItem from "@/components/TheUserItem.vue";
 import TheBaseButton from "@/components/layout/TheBaseButton.vue";
 import TheModalWindow from "@/views/TheModalWindow.vue";
 
+
+
 export default {
   components: {
     TheUserItem,
     TheBaseButton,
     TheModalWindow,
-  },
+},
 
   data() {
     return {
@@ -48,12 +50,12 @@ export default {
     deleteHundle(userId) {
       this.deleteUser(userId);
       this.getUserList(this.currentPage)
-      console.log("delete", userId);
     },
 
     showDetails(user) {
       this.showModal = true; 
       this.userItem = user
+      console.log(user);
     },
     closeDetails() {
       this.showModal = false; 

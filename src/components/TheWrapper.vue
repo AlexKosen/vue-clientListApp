@@ -6,12 +6,18 @@ export default {
   components: {
     TheAddUserButton
   },
+
+  methods: {
+  navigateToUserForm() {
+    this.$router.push('/form');
+  },
+},
 };
 </script>
 
 <template>
   <div class="wrapper">
-    <TheAddUserButton/>
+    <TheAddUserButton @click="navigateToUserForm"/>
     <nav>
       <RouterView />
     </nav>
