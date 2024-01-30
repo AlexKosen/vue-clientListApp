@@ -1,0 +1,14 @@
+/* Обнулення дефолтних стилів */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif; 
+  font-size: 16px;
+  line-height: 1.6;
+  background: rgb(225, 228, 230)
+}
+
