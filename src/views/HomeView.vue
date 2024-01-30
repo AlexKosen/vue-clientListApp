@@ -18,6 +18,7 @@ export default {
       hoveredButtons: {},
       currentPage: 1,
       showModal: false,
+      userItem: {}
     };
   },
 
@@ -50,11 +51,12 @@ export default {
       console.log("delete", userId);
     },
 
-    showDetails() {
-      this.showModal = true; // При натисканні кнопки встановлюємо showModal в true
+    showDetails(user) {
+      this.showModal = true; 
+      this.userItem = user
     },
     closeDetails() {
-      this.showModal = false; // Для закриття модального вікна
+      this.showModal = false; 
     },
   },
 
@@ -65,7 +67,11 @@ export default {
 </script>
 
 <template>
-  <TheModalWindow v-if="showModal"/>
+  <TheModalWindow 
+  v-if="showModal"
+  :userItem = userItem
+  @closeModal="closeDetails"
+  />
   <h1 class="title">User List</h1>
 
   <ul class="user-list">
@@ -76,7 +82,7 @@ export default {
           class="button-list"
           @mouseover="() => handleMouse('userDetails', true)"
           @mouseout="() => handleMouse('userDetails', false)"
-          @click="showDetails"
+          @click="() => showDetails(user)"
         >
           User Details
         </TheBaseButton>

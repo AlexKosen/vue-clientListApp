@@ -1,15 +1,26 @@
 <script>
-export default {};
+export default {
+  props: ['userItem',],
+
+  methods: {
+    closeDetails() {
+      this.$emit("closeModal")
+    }
+  }
+};
 </script>
 
 <template>
     <div class="client-list">
       <div class="client">
-        <i class='far fa-times-circle' style='font-size:16px;color:red'></i>
+        <i class='fas fa-times' @click="closeDetails"></i>
         <div class="img-container">
-          <img src="/image/handsome-man-with-glasses.jpg" alt="Client 1" />
+          <img :src="userItem.avatar" alt="Client avatar" />
         </div>
-        <p>Ivan Petrov</p>
+        <span>Name: {{ userItem.first_name }} {{ userItem.last_name }}</span>
+        <span>Email: {{ userItem.email }}</span>
+        <span>Phone: </span>
+        <span>Address: </span>
       </div>
     </div>
 </template>
@@ -31,6 +42,7 @@ export default {};
 }
 
 .client {
+  position: relative;
   width: 600px;
   height: 450px;
   background: linear-gradient(
@@ -47,21 +59,24 @@ export default {};
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease-in-out;
 }
-.fa-times-circle {
- right: 0;
+.fas.fa-times {
+  position: absolute;
+  top: 5px;
+  right: 6px;
+  font-size:18px;
+  color:#006aff
 }
 
 .img-container {
   display: flex;
   align-items: center;
   flex-direction: column;
-  padding: 10px;
-  width: 580px;
-  height: 350px;
+  padding: 20px;
+  width: 300px;
+  height: 300px;
 }
 
 .client:hover {
-  transform: scale(1.1);
   cursor: pointer;
 }
 
