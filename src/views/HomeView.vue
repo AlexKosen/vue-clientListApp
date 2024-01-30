@@ -4,13 +4,13 @@ import { useUsersStore } from "../store/TheUsersStore";
 
 import TheUserItem from "@/components/TheUserItem.vue";
 import TheBaseButton from "@/components/layout/TheBaseButton.vue";
-import TheModalWindow from "@/views/TheModalWindow.vue"
+import TheModalWindow from "@/views/TheModalWindow.vue";
 
 export default {
   components: {
     TheUserItem,
     TheBaseButton,
-    TheModalWindow
+    TheModalWindow,
   },
 
   data() {
@@ -193,8 +193,7 @@ export default {
   font-size: 16px;
   color: rgb(0, 106, 255);
 }
-.fa:hover {
-
+.pagination-btn:hover .fa {
   color: #fff;
 }
 </style>

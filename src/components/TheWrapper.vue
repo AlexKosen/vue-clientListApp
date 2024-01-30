@@ -1,13 +1,17 @@
 <script>
 import { RouterLink, RouterView } from "vue-router";
+import TheAddUserButton from "./layout/TheAddUserButton.vue";
 
 export default {
-  components: {},
+  components: {
+    TheAddUserButton
+  },
 };
 </script>
 
 <template>
   <div class="wrapper">
+    <TheAddUserButton/>
     <nav>
       <RouterView />
     </nav>
