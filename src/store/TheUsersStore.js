@@ -23,5 +23,15 @@ export const useUsersStore = defineStore("users", {
         console.error(error);
       }
     },
+    async  deleteUser(userId) {
+      try {
+        const response = await axios.delete(`${this.url}/api/users/${userId}`);
+        alert('Користувач успішно видалений')
+        console.log('Користувач успішно видалений');
+      } catch (error) {
+        console.error('Помилка при видаленні користувача:', error);
+      }
+    }
+    
   },
 });

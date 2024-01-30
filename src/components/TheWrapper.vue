@@ -1,7 +1,5 @@
 <script>
 import { RouterLink, RouterView } from "vue-router";
-import AboutView from "@/views/AboutView.vue";
-import HomeView from "@/views/HomeView.vue";
 
 export default {
   components: {},
@@ -11,8 +9,6 @@ export default {
 <template>
   <div class="wrapper">
     <nav>
-      <RouterLink to="/">Home</RouterLink>
-      <RouterLink to="/about">About</RouterLink>
       <RouterView />
     </nav>
   </div>

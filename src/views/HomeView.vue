@@ -4,17 +4,20 @@ import { useUsersStore } from "../store/TheUsersStore";
 
 import TheUserItem from "@/components/TheUserItem.vue";
 import TheBaseButton from "@/components/layout/TheBaseButton.vue";
+import TheModalWindow from "@/views/TheModalWindow.vue"
 
 export default {
   components: {
     TheUserItem,
     TheBaseButton,
+    TheModalWindow
   },
 
   data() {
     return {
       hoveredButtons: {},
       currentPage: 1,
+      showModal: false,
     };
   },
 
@@ -23,7 +26,7 @@ export default {
   },
 
   methods: {
-    ...mapActions(useUsersStore, ["getUserList"]),
+    ...mapActions(useUsersStore, ["getUserList", "deleteUser"]),
 
     handleMouse(button, userId, isHovered) {
       this.hoveredButtons[userId + button] = isHovered;
@@ -40,7 +43,19 @@ export default {
         this.currentPage = this.currentPage -1
         this.getUserList(this.currentPage)
       }
-    }
+    },
+    deleteHundle(userId) {
+      this.deleteUser(userId);
+      this.getUserList(this.currentPage)
+      console.log("delete", userId);
+    },
+
+    showDetails() {
+      this.showModal = true; // При натисканні кнопки встановлюємо showModal в true
+    },
+    closeDetails() {
+      this.showModal = false; // Для закриття модального вікна
+    },
   },
 
   mounted() {
@@ -50,6 +65,7 @@ export default {
 </script>
 
 <template>
+  <TheModalWindow v-if="showModal"/>
   <h1 class="title">User List</h1>
 
   <ul class="user-list">
@@ -60,6 +76,7 @@ export default {
           class="button-list"
           @mouseover="() => handleMouse('userDetails', true)"
           @mouseout="() => handleMouse('userDetails', false)"
+          @click="showDetails"
         >
           User Details
         </TheBaseButton>
@@ -68,6 +85,7 @@ export default {
         class="button-list"
           @mouseover="() => handleMouse('delete', true)"
           @mouseout="() => handleMouse('delete', false)"
+          @click="() => deleteHundle(user.id)"
         >
           Delete
         </TheBaseButton>
@@ -75,11 +93,11 @@ export default {
     </li>
   </ul>
   <div class="pagination">
-    <button @click="prevPage" :disabled="currentPage === 1">
+    <button class="pagination-btn" @click="prevPage" :disabled="currentPage === 1">
       <i class="fa">&#xf100;</i>
     </button>
     <span>Page {{ currentPage }} of {{ totalPages }}</span>
-    <button @click="nextPage" :disabled="currentPage === totalPages">
+    <button class="pagination-btn" @click="nextPage" :disabled="currentPage === totalPages">
       <i class="fa">&#xf101;</i>
     </button>
   </div>
@@ -89,6 +107,7 @@ export default {
 .title {
   text-align: center;
   color: gray;
+  padding: 20px 0;
 }
 .user-list {
   list-style-type: none;
@@ -153,11 +172,23 @@ export default {
   margin: 0 auto;
   padding:20px 0;
 }
-.pagination button {
-  border: none;
+.pagination-btn {
+  border: 1px solid rgb(0, 106, 255);
+  transition: all 0.3s ease;
+  outline: transparent;
+  border-radius: 3px;
+  padding: 0 4px;
 }
+.pagination-btn:hover {
+  background-color:rgb(0, 106, 255);
+}
+
 .fa {
   font-size: 16px;
-  color: gray;
+  color: rgb(0, 106, 255);
+}
+.fa:hover {
+
+  color: #fff;
 }
 </style>
