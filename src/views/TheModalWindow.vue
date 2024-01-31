@@ -45,7 +45,7 @@ export default {
     </div>
 </template>
 
-<style>
+<style >
 
 .client-list {
   position: fixed;
@@ -108,5 +108,11 @@ export default {
 }
 .modal-btn {
  padding: 20px 0;
+}
+ 
+@media screen and (max-width: 600px) {
+  .client {
+    width: auto;
+  }
 }
 </style>

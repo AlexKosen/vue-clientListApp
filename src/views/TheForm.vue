@@ -56,6 +56,7 @@ export default {
       if (this.validateForm()) {
         this.sendUserData(this.user);
         this.cleanerUser();
+        this.$router.go(-1);
       } else {
         alert("Form is not corrected!");
       }
@@ -65,6 +66,7 @@ export default {
       if (this.validateForm()) {
       this.editUserData(this.user, this.user_id)
       this.cleanerUser();
+      this.$router.go(-1);
     } else {
       alert("Form is not corrected!");
     }
@@ -259,5 +261,13 @@ button:hover {
   color: red;
   font-size: 12px;
   margin-top: 5px;
+}
+
+@media screen and (max-width: 600px) {
+  .user-form {
+    padding: 20px;
+    height: auto;
+  }
+
 }
 </style>

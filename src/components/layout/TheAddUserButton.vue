@@ -5,11 +5,6 @@
   </template>
   
   <style>
-  .user-form {
-    max-width: 400px;
-    margin: 0 auto;
-  }
-  
   .add-user-button {
     position: fixed;
     top: 10px;
@@ -33,6 +28,13 @@
   /* Стилі для зміни кольору іконки при наведенні */
   .add-user-button:hover .far.fa-edit {
     color: #fff;
+  }
+
+  @media screen and (max-width: 600px) {
+    .add-user-button {
+      right: 20px;
+    }
+    
   }
   </style>
   

@@ -91,6 +91,7 @@ export default {
 </script>
 
 <template>
+  <div class="container-home-page">
   <TheModalWindow 
   v-if="showModal"
   :userItem = userItem
@@ -161,9 +162,14 @@ export default {
       <i class="fa">&#xf101;</i>
     </button>
   </div>
+</div>
 </template>
 
 <style>
+.container-home-page {
+  margin: 0 auto;
+  padding: 5px;
+}
 .title {
   text-align: center;
   color: gray;
@@ -275,9 +281,6 @@ export default {
   }
   .user-actions {
     margin: 0;
-  }
-  .add-user-button {
-    right: 10px;
   }
 }
 </style>
