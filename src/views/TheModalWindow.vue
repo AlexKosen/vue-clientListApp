@@ -1,10 +1,25 @@
 <script>
+import { useUsersStore } from "../store/TheUsersStore";
+import TheBaseButtonVue from '@/components/layout/TheBaseButton.vue';
+
 export default {
   props: ['userItem',],
-
+  components: {
+    TheBaseButtonVue
+  },
+  
+  data() {
+    return {
+      store: useUsersStore()
+    }
+  },
   methods: {
     closeDetails() {
       this.$emit("closeModal")
+    },
+    eddiUser(user) {
+      this.store.userItem = user;
+      this.$router.push('/form');
     }
   }
 };
@@ -21,11 +36,17 @@ export default {
         <span>Email: {{ userItem.email }}</span>
         <span>Phone: </span>
         <span>Address: </span>
+        <div class="modal-btn">
+          <TheBaseButtonVue @click="() => eddiUser(userItem)">Eddit user</TheBaseButtonVue>
+        </div>
+        
       </div>
+      
     </div>
 </template>
 
 <style>
+
 .client-list {
   position: fixed;
   top: 0;
@@ -44,7 +65,7 @@ export default {
 .client {
   position: relative;
   width: 600px;
-  height: 450px;
+  height: auto;
   background: linear-gradient(
     135deg,
     rgb(255, 255, 255) 0%,
@@ -84,5 +105,8 @@ export default {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+.modal-btn {
+ padding: 20px 0;
 }
 </style>

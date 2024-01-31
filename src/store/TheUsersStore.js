@@ -6,11 +6,13 @@ export const useUsersStore = defineStore("users", {
     userList: null,
     url: "https://reqres.in",
     totalPage: null,
+    userItem: ""
   }),
 
   getters: {
     usersData: (state) => state.userList,
     totalPages: (state) => state.totalPage,
+    getUserEddit: (state) => state.userItem
   },
 
   actions: {
@@ -37,10 +39,21 @@ export const useUsersStore = defineStore("users", {
       try {
         const response = await axios.post(`${this.url}/api/users/`, newUser);
         alert(
-          `User with data: name: ${response.data.name}, age: ${response.data.age}, email: ${response.data.email} successfully added!`
+          `User with successfully added!`
         );
       } catch {
         console.error("Помилка при додаванні нового користувача:", error);
+      }
+    },
+
+    async editUserData(user, id) {
+      try {
+        const response = await axios.put(`${this.url}/api/users/${id}`, user);
+        alert(
+          `User successfully updated!`
+        );
+      } catch {
+        console.error("Помилка при оновленні користувача:", error);
       }
     },
   },
