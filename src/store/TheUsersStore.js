@@ -6,13 +6,13 @@ export const useUsersStore = defineStore("users", {
     userList: null,
     url: "https://reqres.in",
     totalPage: null,
-    userItem: ""
+    userItem: "",
   }),
 
   getters: {
     usersData: (state) => state.userList,
     totalPages: (state) => state.totalPage,
-    getUserEddit: (state) => state.userItem
+    getUserEddit: (state) => state.userItem,
   },
 
   actions: {
@@ -28,32 +28,33 @@ export const useUsersStore = defineStore("users", {
     async deleteUser(userId) {
       try {
         const response = await axios.delete(`${this.url}/api/users/${userId}`);
-        alert("Користувач успішно видалений");
-        console.log("Користувач успішно видалений");
+        if (response.status === 204) {
+          alert("User deleted!");
+        }
       } catch (error) {
-        console.error("Помилка при видаленні користувача:", error);
+        console.error(error);
       }
     },
 
     async sendUserData(newUser) {
       try {
         const response = await axios.post(`${this.url}/api/users/`, newUser);
-        alert(
-          `User with successfully added!`
-        );
+        if (response.status === 201) {
+          alert(`User created successfully!`);
+        }
       } catch {
-        console.error("Помилка при додаванні нового користувача:", error);
+        console.error(error);
       }
     },
 
     async editUserData(user, id) {
       try {
         const response = await axios.put(`${this.url}/api/users/${id}`, user);
-        alert(
-          `User successfully updated!`
-        );
+        if (response.status === 200) {
+          alert(`User successfully updated!`);
+        }
       } catch {
-        console.error("Помилка при оновленні користувача:", error);
+        console.error(error);
       }
     },
   },
